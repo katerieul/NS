@@ -5,11 +5,14 @@ import com.example.ns.core.Sprite;
 import com.example.ns.core.math.Direction;
 import com.example.ns.core.math.Vec2;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +24,15 @@ public class Organism extends Sprite {
     // size mutates - bigger size - bigger energy loss
     // speed mutates
 
+    public static final Image organismImage;
+
+    static {
+        try {
+            organismImage = new Image(new FileInputStream("src/main/resources/com/example/ns/assets/organism.png"), 20, 20, false, false);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private static int NUMBER_OF_ORGANISMS = 0;
     private static final double VISION_NORMALIZATION_FACTOR = 20;
     private static final double ENERGY_NORMALIZATION_FACTOR = .002;
@@ -36,9 +48,9 @@ public class Organism extends Sprite {
     @Getter
     private double energy;
     @Getter
-    private double size; // pixels radius
+    private double size;
     @Getter
-    private final double speed; // pixels per second (20)
+    private final double speed;
     @Getter
     private final int generation;
 
@@ -70,6 +82,7 @@ public class Organism extends Sprite {
     @Override
     protected void draw(@NotNull GraphicsContext graphicsContext) {
         double radius = calculateRadius();
+        graphicsContext.drawImage(organismImage, position.x, position.y);
         graphicsContext.setFill(Color.RED);
         graphicsContext.fillOval(-radius, -radius, radius, radius);
     }
@@ -112,7 +125,7 @@ public class Organism extends Sprite {
     }
 
     private double calculateMutationEnergy() {
-        return Math.log(generation + 2)*Math.pow(generation,8)*Math.pow(BASE_ENERGY, 3);
+        return Math.pow(Math.log(generation + 2),3)*Math.pow(BASE_ENERGY, 3);
     }
 
     @Override

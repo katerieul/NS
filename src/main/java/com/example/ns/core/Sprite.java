@@ -5,6 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileNotFoundException;
+
 public abstract class Sprite {
     protected final Simulation simulation;
     protected Vec2 position;
@@ -17,7 +19,7 @@ public abstract class Sprite {
         this.position = position;
     }
 
-    public void render(@NotNull GraphicsContext graphicsContext) {
+    public void render(@NotNull GraphicsContext graphicsContext) throws FileNotFoundException {
         graphicsContext.translate(position.x, position.y);
         draw(graphicsContext);
         graphicsContext.translate(-position.x, -position.y);
@@ -37,7 +39,7 @@ public abstract class Sprite {
 
     public abstract double getCollisionRadius();
 
-    protected abstract void draw(GraphicsContext graphicsContext);
+    protected abstract void draw(GraphicsContext graphicsContext) throws FileNotFoundException;
 
     public void update(double deltaTime) {
         // do nothing by default

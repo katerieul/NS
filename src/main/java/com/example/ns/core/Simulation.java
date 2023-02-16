@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -60,8 +61,20 @@ public class Simulation {
     public void render(GraphicsContext graphicsContext) {
         graphicsContext.setFill(Color.DARKGRAY);
         graphicsContext.fillRect(0, 0, width.get(), height.get());
-        organisms.forEach(x -> x.render(graphicsContext));
-        food.forEach(x -> x.render(graphicsContext));
+        organisms.forEach(x -> {
+            try {
+                x.render(graphicsContext);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        food.forEach(x -> {
+            try {
+                x.render(graphicsContext);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void addOrganism(Organism organism) {
