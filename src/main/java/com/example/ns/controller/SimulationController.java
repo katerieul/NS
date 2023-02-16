@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ import lombok.SneakyThrows;
 import java.io.IOException;
 
 public class SimulationController {
+
     @AllArgsConstructor
     private enum State {
         READY("Start"),
@@ -33,10 +35,15 @@ public class SimulationController {
     public Canvas canvas;
     @FXML
     public Pane pane;
+    @FXML
+    public Slider population_slider;
+    @FXML
+    public Slider food_slider;
+    @FXML
+    public Slider sector_slider;
+
     public Button startStopButton;
 
-    @FXML
-    private Slider slider;
     private Simulation simulation;
     private AnimationTimer timer;
     private Long latestTime;
@@ -112,15 +119,19 @@ public class SimulationController {
             start();
     }
 
-
-
     @FXML
-    public void onSliderChanged1() {
-        Simulation.FOOD_COUNT = (int) slider.getValue();
+    public void onFoodSliderChanged() {
+        Simulation.FOOD_COUNT = (int) food_slider.getValue();
     }
 
     @FXML
-    public void onSliderChanged2() {
-        Simulation.ORGANISM_COUNT = (int) slider.getValue();
+    public void onPopulationSliderChanged() {
+        Simulation.ORGANISM_COUNT = (int) population_slider.getValue();
     }
+
+    @FXML
+    public void onSectorSliderChanged() {
+        Simulation.SECTORS = (int) sector_slider.getValue();
+    }
+
 }

@@ -28,7 +28,7 @@ public class Organism extends Sprite {
     private static final int BASE_SPEED = 500;
 
     private static final double BASE_SIZE = 6;
-    private static final int NUMBER_OF_SECTORS = 8;
+    public static final int NUMBER_OF_SECTORS = 8;
 
     private static final double MIN_SIZE = 2;
     private static final double MIN_SPEED = 5;
@@ -112,7 +112,7 @@ public class Organism extends Sprite {
     }
 
     private double calculateMutationEnergy() {
-        return Math.log(generation + 2) * Math.log(generation + 2) * Math.pow(generation,5)*BASE_ENERGY;
+        return Math.log(generation + 2)*Math.pow(generation,8)*Math.pow(BASE_ENERGY, 3);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class Organism extends Sprite {
             die();
         }
         if (calculateMutationEnergy() <= energy) {
-            double delta = (Math.random() * 10 + 1) / ((Math.random() * Math.log(generation)) * (Math.random() * 10) + 1);
+            double delta = (Math.random() * 10 + 1) / ((Math.random() * Math.log(generation)) * Math.pow((Math.random() * 10), 3) + 1);
             double mutatedSize = Math.max(size * (1 + Math.pow(-1, Math.round(Math.random())) * delta), MIN_SIZE);
             double newSpeed = Math.max(speed * (1 + Math.pow(-1, Math.round(Math.random())) * delta), MIN_SPEED);
 
