@@ -48,9 +48,9 @@ public class Food extends Sprite {
     @Override
     protected void draw(@NotNull GraphicsContext graphicsContext) throws FileNotFoundException {
         double radius = calculateRadius();
-        graphicsContext.setFill(Color.BLUE);
+        //graphicsContext.setFill(Color.BLUE);
         graphicsContext.drawImage(foodImage, position.x, position.y, radius*3, radius*3);
-        graphicsContext.fillOval(-radius, -radius, radius, radius);
+        //graphicsContext.fillOval(-radius, -radius, radius, radius);
     }
 
     @Override
