@@ -20,8 +20,6 @@ import java.util.stream.Stream;
 public class Simulation {
     public static int FOOD_COUNT = 100;
 
-    public static int SECTORS = Organism.NUMBER_OF_SECTORS;
-
     public static int ORGANISM_COUNT = 20;
     @Getter
     List<Organism> organisms = new ArrayList<>();

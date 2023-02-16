@@ -2,6 +2,7 @@ package com.example.ns.controller;
 
 import com.example.ns.Scene;
 import com.example.ns.core.Simulation;
+import com.example.ns.core.entity.Organism;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -41,6 +42,8 @@ public class SimulationController {
     public Slider food_slider;
     @FXML
     public Slider sector_slider;
+    @FXML
+    public Slider mutation_slider;
 
     public Button startStopButton;
 
@@ -131,7 +134,12 @@ public class SimulationController {
 
     @FXML
     public void onSectorSliderChanged() {
-        Simulation.SECTORS = (int) sector_slider.getValue();
+        Organism.NUMBER_OF_SECTORS = (int) sector_slider.getValue();
+    }
+
+    @FXML
+    public void onMutationSliderChanged() {
+        Organism.POW = (int) mutation_slider.getValue();
     }
 
 }

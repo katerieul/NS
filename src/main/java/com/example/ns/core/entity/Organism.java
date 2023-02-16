@@ -40,8 +40,8 @@ public class Organism extends Sprite {
     private static final int BASE_SPEED = 500;
 
     private static final double BASE_SIZE = 6;
-    public static final int NUMBER_OF_SECTORS = 8;
-
+    public static int NUMBER_OF_SECTORS = 8;
+    public static int POW;
     private static final double MIN_SIZE = 2;
     private static final double MIN_SPEED = 5;
 
@@ -126,7 +126,7 @@ public class Organism extends Sprite {
     }
 
     private double calculateMutationEnergy() {
-        return Math.pow(Math.log(generation + 2),3)*Math.pow(BASE_ENERGY, 3);
+        return Math.pow(Math.log(generation + 2),POW)*Math.pow(BASE_ENERGY, 3);
     }
 
     @Override
