@@ -82,9 +82,10 @@ public class Organism extends Sprite {
     @Override
     protected void draw(@NotNull GraphicsContext graphicsContext) {
         double radius = calculateRadius();
-        graphicsContext.drawImage(organismImage, position.x, position.y);
-        graphicsContext.setFill(Color.RED);
-        graphicsContext.fillOval(-radius, -radius, radius, radius);
+        //graphicsContext.scale(radius, radius);
+        graphicsContext.drawImage(organismImage, position.x, position.y, radius*5, radius*5);
+        //graphicsContext.setFill(Color.RED);
+        //graphicsContext.fillOval(-radius, -radius, radius, radius);
     }
 
     private double calculateVisionRadius() {
