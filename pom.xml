@@ -76,6 +76,13 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                    <annotationProcessorPaths>
+                            <path>
+                                <groupID>org.projectlombok</groupID>
+                                <artifactID>lombok</artifactID>
+                                <version>1.16.12</version>
+                            </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>

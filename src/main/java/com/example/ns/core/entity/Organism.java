@@ -126,7 +126,7 @@ public class Organism extends Sprite {
     }
 
     private double calculateMutationEnergy() {
-        return Math.pow(Math.log(generation + 2),POW)*Math.pow(BASE_ENERGY, 3);
+        return Math.pow(Math.log(generation + 2),POW)*Math.pow(BASE_ENERGY, 2);
     }
 
     @Override
