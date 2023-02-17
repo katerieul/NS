@@ -78,8 +78,8 @@
                     <target>17</target>
                     <annotationProcessorPaths>
                             <path>
-                                <groupID>org.projectlombok</groupID>
-                                <artifactID>lombok</artifactID>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
                                 <version>1.16.12</version>
                             </path>
                     </annotationProcessorPaths>
